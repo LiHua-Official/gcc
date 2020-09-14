@@ -13,8 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: install mercurial
-      uses: sudo apt-get update && sudo apt-get install mercurial
+    # - uses: sudo apt-get update && sudo apt-get install mercurial
     - name: clone gmp
       uses: hg clone https://gmplib.org/repo/gmp/ gmp
     - name: configure
