@@ -13,9 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    # - uses: sudo apt-get update && sudo apt-get install mercurial
-    - name: clone gmp
-      uses: hg clone https://gmplib.org/repo/gmp/ gmp
+    - name: download gmp
+      uses: |
+        wget https://gmplib.org/download/gmp/gmp-6.2.0.tar.xz
+        tar xvf gmp-6.2.0.tar.xz
+        mv gmp-6.2.0 gmp
+        rm gmp-6.2.0.tar.xz
     - name: configure
       run: ./configure --with-newlib --without-headers --enable-initfini-array --disable-nls --disable-shared --disable-multilib --disable-decimal-float --disable-threads  --disable-libatomic --disable-libgomp --disable-libquadmath --disable-libssp --disable-libvtv --disable-libstdcxx --enable-languages=c,c++
     - name: make
